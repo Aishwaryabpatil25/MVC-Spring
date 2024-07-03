@@ -34,9 +34,10 @@
                             </c:forEach>
                             ${dto}
                         </span>
+                         <strong>${message}</strong>
                         <form action="submitSignup" method="post" onsubmit="return validateForm()">
                             <div class="form-group">
-                                <strong>${message}</strong>
+
                                 <label for="firstName">First Name:</label>
                                 <input type="text" class="form-control" id="firstName" name="firstName" value="${dto.firstName}" onblur="validateFirstName()">
                                 <span class="error" style="color:red" id="firstNameError"></span>
@@ -48,12 +49,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" value="${dto.email}" onchange="validEmail()">
+                                <input type="email" class="form-control" id="email" name="email" value="${dto.email}" onchange="validEmail();validateEmail();">
                                 <span class="error" style="color:red" id="emailError"></span>
                             </div>
                             <div class="form-group">
                                 <label for="contactNumber">Contact Number:</label>
-                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" value="${dto.contactNumber}" onblur="validContactNumber()">
+                                <input type="text" class="form-control" id="contactNumber" name="contactNumber" value="${dto.contactNumber}" onchange="validContactNumber()">
                                 <span class="error" style="color:red" id="contactNumberError"></span>
                             </div>
                             <div class="form-group">
@@ -71,7 +72,7 @@
                                 <label class="form-check-label" for="agreement">Agree</label>
                                 <span class="error" style="color:red" id="agreementError"></span>
                             </div>
-                            <button type="submit" class="btn btn-dark" id="submitBtn">Submit</button>
+                            <button type="submit" class="btn btn-dark" id="submitBtn" disabled>Submit</button>
                         </form>
                     </div>
                 </div>
@@ -82,6 +83,7 @@
           function validEmail() {
               console.log("Validate email");
               let email = document.getElementById("email").value.trim();
+
               console.log(email);
               let error = document.getElementById("emailError");
               const request = new XMLHttpRequest();
@@ -91,6 +93,7 @@
                   var ref = this.responseText;
                   console.log(ref);
                   error.innerHTML = ref;
+
               }
           }
 

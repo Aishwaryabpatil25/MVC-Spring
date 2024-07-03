@@ -29,16 +29,25 @@ public class CrisisServiceImpl implements CrisisService {
     public boolean saveAndValidate(CrisisDto crisisDto) {
         System.out.println("Running save and validate method in crisis service");
 
+       CrisisDto crisisDto1= crisisRepo.findByEmail(crisisDto.getEmail());
+       if(crisisDto1!=null)
+       {
+           System.out.println("email already exists");
+           return false;
+       }
+       else {
+           System.err.println(crisisDto1);
+           setAuditValues(crisisDto, "Aishwarya", LocalDateTime.now(), "NA", null, true);
 
-        setAuditValues(crisisDto, "Aishwarya", LocalDateTime.now(), "NA", null, true);
-
-        boolean save = crisisRepo.save(crisisDto);
-        if (save) {
-            System.out.println("Crisis service success: " + crisisDto);
-        } else {
-            System.out.println("Crisis service not success: " + crisisDto);
-        }
-        return save;
+           boolean save = crisisRepo.save(crisisDto);
+           if (save) {
+               System.out.println("Crisis service success: " + crisisDto);
+               return true;
+           } else {
+               System.out.println("Crisis service not success: " + crisisDto);
+           }
+       }
+        return false;
     }
 
     @Override

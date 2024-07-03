@@ -15,7 +15,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping()
-public class CrisisController {
+public class CrisisSignupController {
 
     @Autowired
     private CrisisService crisisService;
@@ -23,7 +23,8 @@ public class CrisisController {
     @Autowired
     private EmailServiceController emailService;
 
-    public CrisisController() {
+    public CrisisSignupController() {
+
         System.out.println("Created CrisisController");
     }
 
@@ -35,7 +36,8 @@ public class CrisisController {
             model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("dto", crisisDto);
             return "CrisisSignUp";
-        } else {
+        }
+        else {
             String generatedPassword = PasswordUtil.generatePassword(12);
             crisisDto.setPassword(generatedPassword);
             boolean save = crisisService.saveAndValidate(crisisDto);
@@ -46,7 +48,7 @@ public class CrisisController {
             } else {
                 model.addAttribute("message",  crisisDto.getFirstName()+" Not Successfully Registered! " );
             }
-            return "CrisisSuccess";
+            return "CrisisSignUp";
         }
     }
 
@@ -64,14 +66,16 @@ public class CrisisController {
             model.addAttribute("message", "Login failed");
             CrisisDto crisisDto1 = crisisService.findByEmail(email);
             if (crisisDto1 != null) {
-                int atmps = crisisDto1.getFailedLoginAttempts() + 1;
+                int atmps = crisisDto1.getFailedLoginAttempts();
                 if (atmps >= 3) {
                     crisisService.updateAccountLock(true, email);
                     model.addAttribute("msg", "Your account has been locked due to multiple failed login attempts.");
                     model.addAttribute("action", "edit");
                 } else {
+                    atmps = crisisDto1.getFailedLoginAttempts()+1;
                     crisisService.updateFailedLoginAttempts(atmps, email);
-                    model.addAttribute("msg", "Invalid login " + (3 - atmps) + " attempts left.");
+                    crisisService.updateAccountLock(false, email);
+                    model.addAttribute("msg", "Invalid login attempts left."+(3-atmps));
                 }
             } else {
                 model.addAttribute("msg", "Invalid email address");
@@ -93,6 +97,7 @@ public class CrisisController {
                         boolean isUpdated = crisisService.resetPassword(email, newPassword);
                         if (isUpdated) {
                             model.addAttribute("message", "Password successfully updated");
+                            model.addAttribute("dto",crisisDto);
                             return "CrisisLogin";
                         } else {
                             model.addAttribute("message", "Failed to update password");

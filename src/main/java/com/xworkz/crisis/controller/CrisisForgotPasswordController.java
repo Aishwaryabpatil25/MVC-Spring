@@ -31,6 +31,7 @@ public class CrisisForgotPasswordController {
             if (updated) {
                 emailServiceController.sendPassword(crisisDto.getEmail(), crisisDto.getPassword());
                 model.addAttribute("message", "A new password has been sent to your email");
+                model.addAttribute("dto",crisisDto);
                 return "CrisisPasswordReset";
             }
         }

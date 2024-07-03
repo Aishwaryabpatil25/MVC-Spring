@@ -28,9 +28,9 @@ function validateLastName() {
     var namePattern = /^[a-zA-Z\s]*$/;
 
     if (namePattern.test(lastNameInput) && lastNameInput.length >= 2 && lastNameInput.length <= 20) {
-        lastNameError.innerHTML = "Last name is valid";
-        lastNameError.style.color = 'green';
-        sendButton.removeAttribute("disabled");
+//        lastNameError.innerHTML = "Last name is valid";
+//        lastNameError.style.color = 'green';
+//        sendButton.removeAttribute("disabled");
     } else {
         lastNameError.innerHTML = "Last name must be between 2 and 20 letters, no numbers";
         lastNameError.style.color = 'red';
@@ -39,7 +39,7 @@ function validateLastName() {
 }
 
 
-       function validateEmail() {
+function validateEmail() {
            var emailInput = document.getElementById("email").value;
            var emailError = document.getElementById("emailError");
            var sendButton = document.getElementById("submitBtn");
@@ -47,9 +47,9 @@ function validateLastName() {
 
            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
            if (emailPattern.test(emailInput)) {
-               emailError.innerHTML = "Email is valid";
-               emailError.style.color = 'green';
-               sendButton.removeAttribute("disabled");
+//               emailError.innerHTML = "Email is valid";
+//               emailError.style.color = 'green';
+//               sendButton.removeAttribute("disabled");
            } else {
                emailError.innerHTML = "Please enter a valid email address";
                emailError.style.color = 'red';

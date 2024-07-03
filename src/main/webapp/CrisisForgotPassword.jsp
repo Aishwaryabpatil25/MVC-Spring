@@ -32,6 +32,7 @@
                                 ${objectError.defaultMessage}<br>
                             </c:forEach>
                             ${message}
+                            ${dto}
                         </span>
                         <form action="forgotPassword" method="post">
                             <div class="form-group">
