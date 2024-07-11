@@ -8,13 +8,15 @@
     <title>Signup Form</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="/crisisManagement/jscript/CrisisSignUp.js"></script>
+
+
 </head>
 <body>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark "style="background-color:black">
           <div class="container-fluid">
               <div class="navbar-header">
                   <a class="navbar-brand" href="#">
-                    <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
+                    <img src="/crisisManagement/logo/xworklogo.png" alt="xworkz" width="140" height="70">
                 </a>
                 &nbsp &nbsp &nbsp &nbsp
               <a class="navbar-brand text-white" href="index.jsp"><b>CrisisDashboard</b></a>
@@ -32,7 +34,7 @@
                             <c:forEach items="${errors}" var="objectError">
                                 ${objectError.defaultMessage}<br>
                             </c:forEach>
-                            ${dto}
+                          
                         </span>
                          <strong>${message}</strong>
                         <form action="submitSignup" method="post" onsubmit="return validateForm()">
@@ -49,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email" value="${dto.email}" onchange="validEmail();validateEmail();">
+                                <input type="email" class="form-control" id="email" name="email" value="${dto.email}" onchange="validEmail()" onblur="validateEmail()">
                                 <span class="error" style="color:red" id="emailError"></span>
                             </div>
                             <div class="form-group">
@@ -72,7 +74,8 @@
                                 <label class="form-check-label" for="agreement">Agree</label>
                                 <span class="error" style="color:red" id="agreementError"></span>
                             </div>
-                            <button type="submit" class="btn btn-dark" id="submitBtn" disabled>Submit</button>
+
+                            <button type="submit" class="btn btn-dark" id="submitBtn" >Submit</button>
                         </form>
                     </div>
                 </div>
@@ -112,10 +115,7 @@
                   error.innerHTML = ref;
               }
           }
-
-
-
-   </script>
+  </script>
 
 </body>
 </html>

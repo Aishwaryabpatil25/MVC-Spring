@@ -11,14 +11,12 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
-                </a>&nbsp &nbsp &nbsp &nbsp
+<img src="/crisisManagement/logo/xworklogo.png" alt="xworkz" width="140" height="70">
 
                 <a class="navbar-brand text-white" href="CrisisSignUp.jsp"><b>CrisisSignUp</b></a>
                 <a class="navbar-brand text-white" href="CrisisLogin.jsp"><b>CrisisLogin</b></a>
                 <a class="navbar-brand text-white" href="CrisisSuccess.jsp"><b>CrisisSuccess</b></a>
-                <a class="navbar-brand text-white" href="CrisisPasswordReset.jsp"><b>CrisisPasswordReset</b></a>
-
+                <a class="navbar-brand text-white" href="CrisisProfile.jsp"><b>CrisisProfile</b></a>
 
             </div>
         </div>

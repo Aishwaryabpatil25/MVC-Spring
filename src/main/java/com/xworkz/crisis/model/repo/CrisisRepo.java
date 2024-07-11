@@ -2,7 +2,8 @@ package com.xworkz.crisis.model.repo;
 
 import com.xworkz.crisis.dto.CrisisDto;
 
-public interface CrisisRepo {
+public interface CrisisRepo
+{
 
     boolean save(CrisisDto crisisDto);
 
@@ -19,7 +20,4 @@ public interface CrisisRepo {
     boolean updatePassword(String email, String newPassword);
 
     boolean forgotPassword(CrisisDto crisisDto);
-
-
-
 }

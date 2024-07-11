@@ -37,7 +37,7 @@ public class CrisisServiceImpl implements CrisisService {
        }
        else {
            System.err.println(crisisDto1);
-           setAuditValues(crisisDto, "Aishwarya", LocalDateTime.now(), "NA", null, true);
+           setAuditValues(crisisDto, crisisDto.getFirstName(), LocalDateTime.now(), "NA", null, true);
 
            boolean save = crisisRepo.save(crisisDto);
            if (save) {

@@ -10,11 +10,11 @@
     <script src="/crisisManagement/jscript/CrisisLogin.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark "style="background-color:black">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <img src="https://x-workz.in/static/media/Logo.cf195593dc1b3f921369.png" alt="xworkz" width="140" height="70">
+                    <img src="/crisisManagement/logo/xworklogo.png" alt="xworkz" width="140" height="70">
                 </a>
                 &nbsp &nbsp &nbsp &nbsp
                 <a class="navbar-brand text-white" href="index.jsp"><b>CrisisDashboard</b></a>
@@ -34,7 +34,7 @@
                          <c:forEach items="${errors}" var="objectError">
                          ${objectError.defaultMessage}<br>
                          </c:forEach>
-                         ${dto}
+
                          </span>
                         <form action="login" method="post">
                         ${message}

@@ -36,9 +36,10 @@ public class CrisisRepoImpl implements CrisisRepo {
     public CrisisDto findByEmailAndPassword(String email, String password) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            Query query = entityManager.createQuery("select c from CrisisDto c where email=:email and password=:pass");
+            Query query = entityManager.createQuery("select c from CrisisDto c where email=:email and password=:pass or newPassword=:new");
             query.setParameter("email", email);
             query.setParameter("pass", password);
+            query.setParameter("new",password);
 
             CrisisDto crisisDto = (CrisisDto) query.getSingleResult();
             return crisisDto;
@@ -76,7 +77,7 @@ public class CrisisRepoImpl implements CrisisRepo {
             query.setParameter("email", crisisDto.getEmail());
             int updatedCount = query.executeUpdate();
             entityManager.getTransaction().commit();
-            return updatedCount > 0;
+            return true;
         } catch (PersistenceException persistenceException) {
             entityManager.getTransaction();
             persistenceException.printStackTrace();
@@ -152,7 +153,7 @@ public class CrisisRepoImpl implements CrisisRepo {
         try {
             tx.begin();
 
-            Query query = entityManager.createQuery("UPDATE CrisisDto c SET c.password = :password WHERE c.email = :email");
+            Query query = entityManager.createQuery("UPDATE CrisisDto c SET c.password = :password ,failedLoginAttempts=0 ,accountLocked=false WHERE c.email = :email");
             query.setParameter("password",crisisDto.getPassword());
             query.setParameter("email",crisisDto.getEmail());
 
